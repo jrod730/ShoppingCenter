@@ -1,17 +1,17 @@
 <?php
 	
 	// $conn is used for db connection
-	include('dbconnection.php');
+	require_once('dbconnection.php');
 
 
 	// head
 	$page_title = 'Login Page';
-	include ('layouts/head.php');
+	require_once('layouts/head.php');
 ?>
 
 <body class="text-center">
 	<!-- inlclude nav -->
-	<?php include ('layouts/nav.php'); ?>
+	<?php require_once('layouts/nav.php'); ?>
 
     <form class="form-signin login-form" method="post">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -27,10 +27,6 @@
     </form>
     <br>
     <hr>
-
-
-
-
     <!-- Placed at the end of the document so the pages load faster -->
       <?php 
         include ('layouts/scripts.php');

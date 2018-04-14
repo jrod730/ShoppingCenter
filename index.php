@@ -29,7 +29,7 @@ include ('layouts/head.php');
           <div class="col-md-4"></div>
           <div class="col-md-4">
             <!-- TODO: center h2 use id for this one -->
-            <h2>New Arrivals</h2>
+            <h2 class="text-center">Categories</h2>
             <hr>
           </div>
           <div class="col-md-4"></div>
