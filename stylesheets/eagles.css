@@ -4,7 +4,15 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
 }
-
+h3 {
+  font-size:1.3rem;
+}
+p {
+  font-size:0.8rem;
+}
+main {
+  margin-top:10px;
+}
 .bg-dark {
     background-color: #00539f !important;
 }

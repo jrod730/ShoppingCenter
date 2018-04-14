@@ -4,21 +4,21 @@
 <!-- include head -->
 <?php 
 $page_title = 'Bald Eagle Shopping Center';
-include ('layouts/head.php');
+require_once('layouts/head.php');
 ?>
 
   <body>
 
    <!-- include nav -->
    <?php 
-    include ('layouts/nav.php');
+    require_once('layouts/nav.php');
     ?>
 
     <main role="main">
 
       <!-- include jumbo -->
       <?php 
-        include ('layouts/jumbotron.php');
+        require_once('layouts/jumbotron.php');
       ?>
 
       <div class="container">
@@ -55,23 +55,14 @@ include ('layouts/head.php');
             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
           </div>
         </div>
-
         <hr>
-
       </div> 
       <!-- /container -->
-
     </main>
-
 <!-- include footer -->
       <?php 
-        include ('layouts/footer.php');
+        require_once('layouts/footer.php');
+        require_once('layouts/scripts.php');
       ?>
-
-    <!-- Placed at the end of the document so the pages load faster -->
-      <?php 
-        include ('layouts/scripts.php');
-      ?>
-    
   </body>
 </html>

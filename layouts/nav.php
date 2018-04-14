@@ -17,9 +17,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Kitchen</a>
-              <a class="dropdown-item" href="#">Bath</a>
-              <a class="dropdown-item" href="#">Electronics</a>
+              <a class="dropdown-item" href="products.php?id=1">Bathroom</a>
+              <a class="dropdown-item" href="products.php?id=2">Electronics</a>
+              <a class="dropdown-item" href="products.php?id=3">Kitchen</a>
             </div>
           </li>
         </ul>

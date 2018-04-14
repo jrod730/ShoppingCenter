@@ -22,14 +22,14 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br> <hr>
         <!-- include footer -->
       <?php 
-        include ('layouts/footer.php');
+        require_once('layouts/footer.php');
       ?>
     </form>
-    <br>
+    <br />
     <hr>
     <!-- Placed at the end of the document so the pages load faster -->
       <?php 
-        include ('layouts/scripts.php');
+        require_once('layouts/scripts.php');
       ?>
     
   </body>

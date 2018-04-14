@@ -6,10 +6,11 @@ DEFINE ('DB_HOST', 'localhost:3306');
 DEFINE ('DB_NAME', 'Store');
 
 // Make the connection:
-$conn = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
+$mysqli = new mysqli("localhost", "root", "", "Store");
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+if ($mysqli->connect_errno) {
+    printf("Connect failed: %s\n", $mysqli->connect_error);
+    exit();
+}
 
 ?>
