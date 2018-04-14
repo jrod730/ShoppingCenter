@@ -30,7 +30,7 @@
             <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Login <i class="fas fa-user"></i></a>
+            <a class="nav-link" href="login.php">Login <i class="fas fa-user"></i></a>
           </li>
         </ul>
         <form method="post" action="search.php" class="form-inline my-2 my-lg-0">
