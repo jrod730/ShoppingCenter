@@ -1,23 +1,23 @@
 <?php
 	
 	// $conn is used for db connection
-	include('dbconnection.php');
+	require_once('dbconnection.php');
 
 
 	// head
 	$page_title = 'Search Results';
-	include ('layouts/head.php');
+	require_once('layouts/head.php');
 ?>
 
 <body>
 	<!-- inlclude nav -->
-	<?php include ('layouts/nav.php'); ?>
+	<?php require_once('layouts/nav.php'); ?>
 
 	<main role="main">
 
       <!-- include jumbo -->
       <?php 
-        include ('layouts/jumbotron.php');
+        require_once('layouts/jumbotron.php');
       ?>
 
       <div class="container">
@@ -69,12 +69,12 @@
 
 <!-- include footer -->
       <?php 
-        include ('layouts/footer.php');
+        require_once('layouts/footer.php');
       ?>
 
     <!-- Placed at the end of the document so the pages load faster -->
       <?php 
-        include ('layouts/scripts.php');
+        require_once('layouts/scripts.php');
       ?>
     
   </body>

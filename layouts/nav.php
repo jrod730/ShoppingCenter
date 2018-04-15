@@ -1,5 +1,5 @@
  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Bald Eagles eCommerce</a>
+      <a class="navbar-brand" href="#">Bald Eagles</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -11,15 +11,15 @@
             <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Coupons</a>
+            <a class="nav-link" href="#">About Us</a>
           </li>
           <!-- TODO: Nav should be linked to specific pages -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Kitchen</a>
-              <a class="dropdown-item" href="#">Bath</a>
-              <a class="dropdown-item" href="#">Electronics</a>
+              <a class="dropdown-item" href="products.php?id=1">Bathroom</a>
+              <a class="dropdown-item" href="products.php?id=2">Electronics</a>
+              <a class="dropdown-item" href="products.php?id=3">Kitchen</a>
             </div>
           </li>
         </ul>
