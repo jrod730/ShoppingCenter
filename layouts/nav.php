@@ -1,5 +1,5 @@
  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Bald Eagles</a>
+      <a class="navbar-brand" href="index.php">Bald Eagles</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -17,9 +17,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="products.php?id=1">Bathroom</a>
-              <a class="dropdown-item" href="products.php?id=2">Electronics</a>
-              <a class="dropdown-item" href="products.php?id=3">Kitchen</a>
+              <a class="dropdown-item" href="bath.php">Bathroom</a>
+              <a class="dropdown-item" href="electronics.php?id=2">Electronics</a>
+              <a class="dropdown-item" href="kitchen.php">Kitchen</a>
             </div>
           </li>
         </ul>
@@ -27,11 +27,34 @@
         <!-- TODO: add a shopping cart icon via Font awesome -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.php">Login <i class="fas fa-user"></i></a>
-          </li>
+          
+              <?php 
+              if(isset($_SESSION['username'])) {
+                echo '<li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' ;
+                    echo $_SESSION['username']; 
+                  echo '<i class="fas fa-user"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                      <a class="dropdown-item" href="logout.php">Logout</a>
+                    </div>
+                </li>';
+                
+              }
+              else
+              {
+                echo '<li class="nav-item">
+                  <a class="nav-link" href="login.php">';
+                    echo 'login';
+                    echo '<i class="fas fa-user"></i>
+                  </a>
+                </li>';
+              }
+
+
+              ?>
+       
         </ul>
         <form method="post" action="search.php" class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"  name="search">

@@ -1,7 +1,7 @@
 <!-- include head -->
 <?php 
 session_start(); //starts seesion for username this needs to be at the top of every page.
-$page_title = 'Bald Eagle Shopping Center';
+$page_title = 'Electronics';
 require_once('layouts/head.php');
 ?>
 
@@ -27,7 +27,7 @@ require_once('layouts/head.php');
           <div class="col-md-4"></div>
           <div class="col-md-4">
             <!-- TODO: center h2 use id for this one -->
-            <h2 class="text-center">Hot Items</h2>
+            <h2 class="text-center">Electronics</h2>
             <hr>
           </div>
           <div class="col-md-4"></div>
