@@ -2,124 +2,86 @@
 <!-- TODO: This page contains a ton of spaghetti code we should make more modular by having a cart functionality page with functions and such in an actual implementation -->
 <?php 
 
-	require_once('dbconnection.php');
+  require_once('inc/mysqliDB.php'); 
 	session_start(); //starts seesion for username this needs to be at the top of every page.
 
 	// head
 	$page_title = 'Cart';
 	require_once('layouts/head.php');
-
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		
-	
-		//Handles deleted items
-		if (isset($_POST['delete'])) {
-
-			
-			//Get product id by name
-			$sql = "SELECT id FROM product 
-					WHERE product_name = '".$_POST['item_name']."'";
-			$result = $conn->query($sql);
-			$row = $result->fetch_assoc();
-			$product_id = $row['id'];
-
-			// Now remove item from cart
-  			$remove = "DELETE FROM cart 
-  						WHERE product_id = ".$product_id;
-
-   			if(!$conn->query($remove) === true) {
-       			echo $conn->error;               
-   			}
-		}
-	}
  ?>
  <body>
 	<!-- inlclude nav -->
 	<?php require_once('layouts/nav.php'); ?>
 
+
+  <?php 
+    if(isset($_SESSION['username'])) {
+  ?>
 	<main role="main">
-
-      <!-- include jumbo -->
-      <?php 
-        require_once('layouts/jumbotron.php');
-      ?>
-
       <div class="container">
         <!-- Container Heading -->
-        <h1>
-        	<?php 
-        		if(isset($_SESSION['username'])){
-        			echo $_SESSION['username']. "'s  Cart <hr>" ;
+        <h1><?php echo $_SESSION['username']."'s  Cart"; ?></h1>
+        <table id="cartTable" class="table">
+          <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+        <?php
 
-        		}
-        		else{
-        			echo "Your Cart <hr>";
-        		}
-			?>
-        	
-        </h1>
-        <a id="prev" href="purchased.php">Previous Purchases</a>
+        $total = 0;
 
-        <ul class="panel panel-default">
-  	
-       		<?php 
-       			
-             	$total = 0;
+        $userID = $_SESSION['id'];
+        $q = "SELECT * FROM `cart` WHERE `status_id` = 3 && `user_id` = ".$userID;
+        $result = $mysqli->query($q);
+        if($result->num_rows > 0)
+        {
+          while($row = $result->fetch_object())
+          {
+            $qr = "SELECT * FROM `product` WHERE id = ".$row->product_id;
+            if ($resQR = $mysqli->query($qr))
+            {
+            $rowProduct = $resQR->fetch_assoc();
+          echo 
+            '<tr>
+              <td><img src="img/products/'.$rowProduct["url"].'" height="50" /></td>
+              <td>'.$rowProduct["name"].'</td>
+              <td>'.$rowProduct["description"].'</td>
+              <td>'.$rowProduct["price"].'</td>
+            </tr>';
 
-       			// TODO: check if user has an active cart if they do then display itemes
-       			$sql = "SELECT user.username, status.status_type, product.product_name, product.price, product.id  from cart
-						inner join status
-						on status.id = cart.status_id
-						inner join user
-						on user.id = cart.user_id
-						inner join product
-						on product.id = cart.product_id
-						WHERE status_type = 'active' AND username = '".$_SESSION['username']."'";
-
-				$result = $conn->query($sql);
-
-				// TODO: add a remove from cart
-				if ($result->num_rows > 0) {
-    					// output data of each row
-    					echo "<h3>" .$result->num_rows. " item(s) in cart </h3>";
-    					
-    					
-    					while($row = $result->fetch_assoc()) {
-
-        			        echo '<li class="list-group-item" name="'.$row["product_name"].'"><form action="cart.php" method="post">'
-        							.$row["product_name"]. ' - $'. $row["price"].
-        							'<input type="hidden" name="item_name" value="'.$row["product_name"].'"> 
-        							  <button class="badge" type="submit" name="delete"> X </button> </form></li>';
-        					
-        					$total += floatval($row['price']);
-        					
-    					}//END WHILE
-
-    					echo '<h3><strong> Total: '.$total.'</strong><h3>';
-
-				} else {
-    				
-    				echo "<h3> YOUR CART IS EMPTY! BUY SOMETHING! </h3>";
-				}
-				echo '</div>'
-       		?>
-
-        </ul>
+            $total += $rowProduct["price"];
+          }
+        }
+        }
+        ?>
+            <tr>
+              <td></td>
+              <td></td>
+              <td align='right'>
+                <a href="inc/process.php?pID=2&userID=<?php echo $_SESSION['id']; ?>" class="btn btn-info add-cart-btn">Empty</a>
+                <a href="checkout.php" class="btn btn-primary add-cart-btn">Check Out</a>
+              </td>
+              <td>
+                <?php 
+                  echo "<div align='right'>Total $".$total."</div>";
+                ?></td>
+            </tr>
+          </tbody>
+        </table>
         <hr>
       </div> 
       <!-- /container -->
-
     </main>
-
-<!-- include footer -->
-      <?php 
+    <?php
+  } else
+    echo "<h1>Please <a href='login.php'>login</a></h1>";
         require_once('layouts/footer.php');
-      ?>
-
-    <!-- Placed at the end of the document so the pages load faster -->
-      <?php 
         require_once('layouts/scripts.php');
       ?>
-    
   </body>
 </html>

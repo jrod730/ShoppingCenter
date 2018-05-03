@@ -11,15 +11,15 @@
             <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" href="about-us.php">About Us</a>
           </li>
           <!-- TODO: Nav should be linked to specific pages -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="bath.php">Bathroom</a>
-              <a class="dropdown-item" href="electronics.php?id=2">Electronics</a>
-              <a class="dropdown-item" href="kitchen.php">Kitchen</a>
+              <a class="dropdown-item" href="products.php?id=1">Bathroom</a>
+              <a class="dropdown-item" href="products.php?id=2">Electronics</a>
+              <a class="dropdown-item" href="products.php?id=3">Kitchen</a>
             </div>
           </li>
         </ul>
@@ -27,9 +27,32 @@
         <!-- TODO: add a shopping cart icon via Font awesome -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+            <!-- Check if user has any items in the cart, if so display number -->
+            <?php 
+            if(isset($_SESSION['id']))
+            {
+              require_once('/inc/mysqliDB.php'); 
+              // Certain user ID check & status of the item needs to be active
+              $result = $mysqli->query("SELECT * FROM `cart` WHERE `user_id` = ".$_SESSION['id']." && `status_id` = 3");
+              if($result)
+              {
+                $count = $result->num_rows;
+            ?>
+            <a class="nav-link" href="cart.php">
+              <span class="fa-stack" data-count="<?php echo $count; ?>">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </a>
+            <?php }
+            } else { ?>
+            <a class="nav-link" href="cart.php">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+            <?php 
+              }
+            ?>
           </li>
-          
+          <li class="nav-item"><a class="nav-link" href="orders.php" title="orders">Orders</a></li>
               <?php 
               if(isset($_SESSION['username'])) {
                 echo '<li class="nav-item dropdown">

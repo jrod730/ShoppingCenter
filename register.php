@@ -1,7 +1,7 @@
 <?php
 	
 	// $conn is used for db connection
-	require('dbconnection.php');
+	require('inc/dbconnection.php');
   session_start(); //starts seesion for username this needs to be at the top of every page.
 	$page_title = 'Login Page';
 	require_once('layouts/head.php');

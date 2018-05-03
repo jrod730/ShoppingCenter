@@ -20,7 +20,7 @@ require_once('layouts/head.php');
         <div class="row">
         <!-- Container Heading -->
           <!-- DB -->
-          <?php require_once('dbconnection.php'); 
+          <?php require_once('inc/mysqliDB.php'); 
             $result = $mysqli->query("SELECT * FROM `product` WHERE category_id = ".$_GET['id']);
             if($result)
             {

@@ -1,11 +1,7 @@
-
-<!-- TODO: Add Logout page eventually if time permits. -->
-<!-- TODO: Make a more robust login page. This is very primitive handling of the login page. Vunerable to injection attack and no user token implemented.  -->
-
 <?php
 	
 	// $conn is used for db connection
-	require('dbconnection.php');
+	require('inc/mysqliDB.php');
   session_start(); //starts seesion for username this needs to be at the top of every page.
 	$page_title = 'Login Page';
 	require_once('layouts/head.php');
@@ -36,14 +32,17 @@
 
     $q = "SELECT * FROM user WHERE username='$un' AND password='$pass'";
    
+    $result = $mysqli->query($q);
+    $row = $result->fetch_object();
 
     // Check the result:
-    if ($result=mysqli_query($conn,$q)) { 
+    if ($row) { 
 
       // If record exists then create a username session
       $_SESSION['username'] = $un;
-      
-      header("Location: index.php");
+      $_SESSION['id'] = $row->id;
+
+      header('Location: index.php');
 
     }else{//Notamatch!
 
@@ -65,8 +64,7 @@
   }
     // // Return false and the errors:
     // return array(false, $errors);
-    mysqli_close($conn);
-    
+  $mysqli->close();   
 }
 ?>
 

@@ -1,7 +1,7 @@
 <?php
 	
 	// $conn is used for db connection
-	require_once('dbconnection.php');
+	require_once('inc/dbconnection.php');
   session_start(); //starts seesion for username this needs to be at the top of every page.
 
 
